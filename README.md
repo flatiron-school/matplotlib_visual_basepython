@@ -25,6 +25,11 @@ Order the plot so that the highest value count is first on the x_axis.
 
 
 ```python
+# Your code here
+```
+
+
+```python
 #__SOLUTION__
 fig, ax = plt.subplots()
 
@@ -34,19 +39,6 @@ ax.set_xlabel('Length')
 ax.set_ylabel('Diameter')
 ```
 
-
-
-
-    Text(0, 0.5, 'Diameter')
-
-
-
-
-    
-![png](README_files/README_5_1.png)
-    
-
-
 # Task 2
 
 Create a barplot that visualizes the number of instances of each category of abalone `sex`. There are three categories: male, female, and infant. 
@@ -55,6 +47,30 @@ There are many ways to do this, but try to do it using a for loop.
 
 Eventually, numpy and pandas will make this very easy.  If you want, look up how you might use `numpy.unique()` or by converting the lists to a pandas `series` and using the `value_counts` method.
 
+
+<details>
+    <summary>
+        Starter Code if you are stuck creating the counts
+    </summary>
+
+```python
+    
+# Either use a dictionary in the for loop    
+sex_counts = {'M':0, 'F':0, 'I':0}
+
+# Or create count variables
+male_sex_count = 0
+female_sex_count = 0
+infant_sex_count = 0
+
+for sex in abalone['sex']:
+    if sex == _:
+        pass
+    elif sex == _:
+        pass
+    else:
+        pass
+```
 
 
 ```python
@@ -88,12 +104,6 @@ ax.set_xlabel('Sex');
 ```
 
 
-    
-![png](README_files/README_9_0.png)
-    
-
-
-
 ```python
 #__SOLUTION__
 import pandas as pd
@@ -109,18 +119,6 @@ sex_counts.plot(kind='bar', ax=ax)
 ax.set_title('Abalone Sex Count')
 ax.set_xlabel('Sex');
 ```
-
-    M    1528
-    I    1342
-    F    1307
-    dtype: int64
-
-
-
-    
-![png](README_files/README_10_1.png)
-    
-
 
 # Task 3
 
@@ -155,6 +153,11 @@ for sex, length in zip(abalone['sex'], abalone['length']):
 
 
 ```python
+# Your code here
+```
+
+
+```python
 #__SOLUTION__
 
 # Create empty lists to hold length of each sex
@@ -184,15 +187,14 @@ ax.legend();
         
 ```
 
-
-    
-![png](README_files/README_14_0.png)
-    
-
-
 # Task 4
 
 For the final task, create a single figure with two plots.  The figure should have 2 rows and 1 column, which you specify with the first two arguments of the subplots() method. Go ahead and make the figure bigger (10,10) using the `figsize` argument.  In row 1, plot a **histogram** of the `height` variable. In row 2, plot a **boxplot** of the `height` variable. 
+
+
+```python
+# Your code here
+```
 
 
 ```python
@@ -203,12 +205,6 @@ ax1.hist(abalone['height'],bins=30)
 ax2.boxplot(abalone['height'], vert=False, showfliers=True)
 ax2.set_xlabel('Height', );
 ```
-
-
-    
-![png](README_files/README_17_0.png)
-    
-
 
 
 ```python
