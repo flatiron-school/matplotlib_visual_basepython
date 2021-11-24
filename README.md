@@ -2,20 +2,6 @@
 
 For this activity, you will be using an abalone dataset from [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/abalone). Abalone are shelled marine animals raised and harvested for food.  This data set describes a little over 4000 abalone collected in Tasmania.  Their physical characteristics have been measured, a process which is described in the link above as "a boring and time-consuming task".  Although we will just be visualizing the data, note that the recommended machine learning application for this data set is "predicting the age of abalone from physical measurements."
 
-
-```python
-# Run cell without changes
-import pandas as pd
-import matplotlib.pyplot as plt
-
-abalone = pd.read_csv('data/abalone.data', header=None)
-
-abalone.columns = ["sex", "length", "diameter", "height", "whole",
-                   "shucked", "viscera", "shell", "rings"]
-
-abalone = abalone.to_dict(orient='list')
-```
-
 # Task 1
 
 Create a scatterplot that visualizes the correlation between abalone `length` and `diameter`.  Title the plot with a string that includes a short description of the correlation.  Add axis labels.  Color the markers green. 
@@ -25,7 +11,6 @@ Order the plot so that the highest value count is first on the x_axis.
 
 
 ```python
-#__SOLUTION__
 fig, ax = plt.subplots()
 
 ax.scatter(abalone['length'], abalone['diameter'], c='g')
@@ -33,19 +18,6 @@ ax.set_title('Strong Positive Correlation\n Between Abalone Length and Diameter'
 ax.set_xlabel('Length')
 ax.set_ylabel('Diameter')
 ```
-
-
-
-
-    Text(0, 0.5, 'Diameter')
-
-
-
-
-    
-![png](README_files/README_5_1.png)
-    
-
 
 # Task 2
 
@@ -58,12 +30,6 @@ Eventually, numpy and pandas will make this very easy.  If you want, look up how
 
 
 ```python
-# Your code here
-```
-
-
-```python
-#__SOLUTION__
 
 sex_counts = {'M':0, 'F':0, 'I':0}
 
@@ -88,14 +54,7 @@ ax.set_xlabel('Sex');
 ```
 
 
-    
-![png](README_files/README_9_0.png)
-    
-
-
-
 ```python
-#__SOLUTION__
 import pandas as pd
 # Alternate answer using pandas series
 
@@ -109,18 +68,6 @@ sex_counts.plot(kind='bar', ax=ax)
 ax.set_title('Abalone Sex Count')
 ax.set_xlabel('Sex');
 ```
-
-    M    1528
-    I    1342
-    F    1307
-    dtype: int64
-
-
-
-    
-![png](README_files/README_10_1.png)
-    
-
 
 # Task 3
 
@@ -155,7 +102,6 @@ for sex, length in zip(abalone['sex'], abalone['length']):
 
 
 ```python
-#__SOLUTION__
 
 # Create empty lists to hold length of each sex
 abalone_male_length = []
@@ -184,33 +130,15 @@ ax.legend();
         
 ```
 
-
-    
-![png](README_files/README_14_0.png)
-    
-
-
 # Task 4
 
 For the final task, create a single figure with two plots.  The figure should have 2 rows and 1 column, which you specify with the first two arguments of the subplots() method. Go ahead and make the figure bigger (10,10) using the `figsize` argument.  In row 1, plot a **histogram** of the `height` variable. In row 2, plot a **boxplot** of the `height` variable. 
 
 
 ```python
-#__SOLUTION__
 
 fig, (ax1, ax2) = plt.subplots(2,1, figsize=(10,10), sharex=True)
 ax1.hist(abalone['height'],bins=30)
 ax2.boxplot(abalone['height'], vert=False, showfliers=True)
 ax2.set_xlabel('Height', );
-```
-
-
-    
-![png](README_files/README_17_0.png)
-    
-
-
-
-```python
-
 ```
