@@ -23,6 +23,22 @@ Create a scatterplot that visualizes the correlation between abalone `length` an
 Make sure to use fig, ax plt.subplots() syntax. 
 Order the plot so that the highest value count is first on the x_axis.
 
+
+```python
+# Your code here
+```
+
+
+```python
+#__SOLUTION__
+fig, ax = plt.subplots()
+
+ax.scatter(abalone['length'], abalone['diameter'], c='g')
+ax.set_title('Strong Positive Correlation\n Between Abalone Length and Diameter')
+ax.set_xlabel('Length')
+ax.set_ylabel('Diameter')
+```
+
 # Task 2
 
 Create a barplot that visualizes the number of instances of each category of abalone `sex`. There are three categories: male, female, and infant. 
@@ -32,9 +48,76 @@ There are many ways to do this, but try to do it using a for loop.
 Eventually, numpy and pandas will make this very easy.  If you want, look up how you might use `numpy.unique()` or by converting the lists to a pandas `series` and using the `value_counts` method.
 
 
+<details>
+    <summary>
+        Starter Code if you are stuck creating the counts
+    </summary>
+
+```python
+    
+# Either use a dictionary in the for loop    
+sex_counts = {'M':0, 'F':0, 'I':0}
+
+# Or create count variables
+male_sex_count = 0
+female_sex_count = 0
+infant_sex_count = 0
+
+for sex in abalone['sex']:
+    if sex == _:
+        pass
+    elif sex == _:
+        pass
+    else:
+        pass
+```
+
 
 ```python
 # Your code here
+```
+
+
+```python
+#__SOLUTION__
+
+sex_counts = {'M':0, 'F':0, 'I':0}
+
+for sex in abalone['sex']:
+    if sex == 'M':
+        sex_counts['M'] += 1
+    elif sex == 'F':
+        sex_counts['F'] += 1
+    else:
+        sex_counts['I'] += 1
+        
+# Sort values so that plot is descending
+sex_counts = {k:v for k,v in sorted(sex_counts.items(), 
+                                    key=lambda x: x[1], reverse=True)}
+        
+fig, ax = plt.subplots()
+
+ax.bar(sex_counts.keys(), sex_counts.values())
+
+ax.set_title('Abalone Sex Count')
+ax.set_xlabel('Sex');
+```
+
+
+```python
+#__SOLUTION__
+import pandas as pd
+# Alternate answer using pandas series
+
+sex_counts = pd.Series(abalone['sex']).value_counts()
+print(sex_counts)
+
+fig, ax = plt.subplots()
+
+sex_counts.plot(kind='bar', ax=ax)
+
+ax.set_title('Abalone Sex Count')
+ax.set_xlabel('Sex');
 ```
 
 # Task 3
@@ -68,9 +151,60 @@ for sex, length in zip(abalone['sex'], abalone['length']):
         pass
 ```
 
+
+```python
+# Your code here
+```
+
+
+```python
+#__SOLUTION__
+
+# Create empty lists to hold length of each sex
+abalone_male_length = []
+abalone_infant_length = []
+abalone_female_length = []
+
+# Populate lists with lengths
+for sex, length in zip(abalone['sex'], abalone['length']):
+    if sex == 'M':
+        abalone_male_length.append(length)
+    elif sex == 'F':
+        abalone_female_length.append(length)
+    else:
+        abalone_infant_length.append(length)
+        
+fig, ax = plt.subplots(figsize=(10,10))
+
+# Layer histograms to display whether they are from 
+ax.hist(abalone_male_length, bins=20, label='male')
+ax.hist(abalone_infant_length, bins=20, alpha=.5, label='infant')
+ax.hist(abalone_female_length, bins=20, alpha=.5, label='female')
+
+ax.set_title('Distribution of Lengths\n Separated by Sex')
+ax.set_xlabel('Length (mm)')
+ax.legend();
+        
+```
+
 # Task 4
 
 For the final task, create a single figure with two plots.  The figure should have 2 rows and 1 column, which you specify with the first two arguments of the subplots() method. Go ahead and make the figure bigger (10,10) using the `figsize` argument.  In row 1, plot a **histogram** of the `height` variable. In row 2, plot a **boxplot** of the `height` variable. 
+
+
+```python
+# Your code here
+```
+
+
+```python
+#__SOLUTION__
+
+fig, (ax1, ax2) = plt.subplots(2,1, figsize=(10,10), sharex=True)
+ax1.hist(abalone['height'],bins=30)
+ax2.boxplot(abalone['height'], vert=False, showfliers=True)
+ax2.set_xlabel('Height', );
+```
 
 
 ```python
